@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{209A228E-21D4-419D-A734-7F23A88FBD5F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SmithNetListener</RootNamespace>
+    <AssemblyName>SmithNetListener</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Amazon.Lambda.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Amazon.Lambda.Core.1.1.0\lib\netstandard2.0\Amazon.Lambda.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.Serialization.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Amazon.Lambda.Serialization.Json.1.7.0\lib\netstandard2.0\Amazon.Lambda.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Jishi.Intel.SonosUPnP, Version=0.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Jishi.Intel.SonosUPnP.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UPnP, Version=1.0.4561.18411, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\UPnP.dll</HintPath>
+    </Reference>
+    <Reference Include="UPNP_AV, Version=1.0.4561.18412, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\UPNP_AV.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlexaAPI\AlexaConstants.cs" />
+    <Compile Include="AlexaAPI\Request\Application.cs" />
+    <Compile Include="AlexaAPI\Request\Context.cs" />
+    <Compile Include="AlexaAPI\Request\Device.cs" />
+    <Compile Include="AlexaAPI\Request\Intent.cs" />
+    <Compile Include="AlexaAPI\Request\Request.cs" />
+    <Compile Include="AlexaAPI\Request\Session.cs" />
+    <Compile Include="AlexaAPI\Request\SkillRequest.cs" />
+    <Compile Include="AlexaAPI\Request\Slot.cs" />
+    <Compile Include="AlexaAPI\Request\System.cs" />
+    <Compile Include="AlexaAPI\Request\User.cs" />
+    <Compile Include="AlexaAPI\Response\CardImage.cs" />
+    <Compile Include="AlexaAPI\Response\DialogDirective.cs" />
+    <Compile Include="AlexaAPI\Response\ICard.cs" />
+    <Compile Include="AlexaAPI\Response\IDirective.cs" />
+    <Compile Include="AlexaAPI\Response\IOutputSpeech.cs" />
+    <Compile Include="AlexaAPI\Response\PlainTextOutputSpeech.cs" />
+    <Compile Include="AlexaAPI\Response\Reprompt.cs" />
+    <Compile Include="AlexaAPI\Response\Response.cs" />
+    <Compile Include="AlexaAPI\Response\SimpleCard.cs" />
+    <Compile Include="AlexaAPI\Response\SkillResponse.cs" />
+    <Compile Include="AlexaAPI\Response\SsmlOutputSpeech.cs" />
+    <Compile Include="AlexaAPI\Response\StandardCard.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

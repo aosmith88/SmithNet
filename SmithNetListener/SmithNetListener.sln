@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmithNetListener", "SmithNetListener\SmithNetListener.csproj", "{209A228E-21D4-419D-A734-7F23A88FBD5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{209A228E-21D4-419D-A734-7F23A88FBD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209A228E-21D4-419D-A734-7F23A88FBD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209A228E-21D4-419D-A734-7F23A88FBD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209A228E-21D4-419D-A734-7F23A88FBD5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {714C5927-9938-4500-ACA2-40D9D1E4E9D8}
+	EndGlobalSection
+EndGlobal
