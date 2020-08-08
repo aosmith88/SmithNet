@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using AlexaAPI;
@@ -24,7 +25,8 @@ namespace SmithNetListener
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool SetForegroundWindow(IntPtr handle);
         [System.Runtime.InteropServices.DllImport("User32.dll")]
-        private static extern bool ShowWindow(IntPtr handle, int nCmdShow);
+        private static extern bool ShowWindowAsync(HandleRef nWnd, int nCmdShow);
+        //private static extern bool ShowWindow(IntPtr handle, int nCmdShow);
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool IsIconic(IntPtr handle);
 
@@ -71,12 +73,25 @@ namespace SmithNetListener
 
                         if (alexaReq.intent == "KodiOpen")
                         {
-                            Process kodi = Process.Start("C:\\Program Files (x86)\\Kodi\\Kodi.exe");
+                            Process kodi;
+                            Process[] objProcesses = System.Diagnostics.Process.GetProcessesByName("kodi");
+                            if (objProcesses.Length > 0)
+                            {
+                                Console.WriteLine($"{DateTime.Now.ToString()}: Found instance of Kodi running");
+                                kodi = objProcesses[0];
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{DateTime.Now.ToString()}: Starting new instance of Kodi");
+                                kodi = Process.Start("C:\\Program Files (x86)\\Kodi\\Kodi.exe");
+                            }
                             // Bring to Front
                             IntPtr handle = kodi.MainWindowHandle;
                             // check minimized state
-                            if (IsIconic(handle))
-                                ShowWindow(handle, 9); // restore
+                            //if (IsIconic(handle))
+                            //    ShowWindowAsync(handle, 9); // restore
+
+                            ShowWindowAsync(new HandleRef(null, IntPtr.Zero), 9); // restore from minimized if needed
 
                             SetForegroundWindow(handle);
                         }
