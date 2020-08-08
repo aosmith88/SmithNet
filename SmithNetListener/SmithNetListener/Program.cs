@@ -20,6 +20,14 @@ namespace SmithNetListener
 {
     class Program
     {
+        // For handling Kodi Window State
+        [System.Runtime.InteropServices.DllImport("User32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr handle);
+        [System.Runtime.InteropServices.DllImport("User32.dll")]
+        private static extern bool ShowWindow(IntPtr handle, int nCmdShow);
+        [System.Runtime.InteropServices.DllImport("User32.dll")]
+        private static extern bool IsIconic(IntPtr handle);
+
         static void Main(string[] args)
         {
             //run in admin cmd: netsh http add urlacl url="http://+:1234/" user=Everyone listen=yes
@@ -62,7 +70,16 @@ namespace SmithNetListener
                         dynamic alexaReq = JsonConvert.DeserializeObject(message);
 
                         if (alexaReq.intent == "KodiOpen")
-                            Process.Start("C:\\Program Files (x86)\\Kodi\\Kodi.exe");
+                        {
+                            Process kodi = Process.Start("C:\\Program Files (x86)\\Kodi\\Kodi.exe");
+                            // Bring to Front
+                            IntPtr handle = kodi.MainWindowHandle;
+                            // check minimized state
+                            if (IsIconic(handle))
+                                ShowWindow(handle, 9); // restore
+
+                            SetForegroundWindow(handle);
+                        }
                         else if (alexaReq.intent == "KodiClose")
                         {
                             Process.Start("taskkill", "/F /IM Kodi.exe");
